@@ -52,8 +52,8 @@
                         <th>No.</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>dpi</th>
                         <th>Telefono</th>
+                        <th>DPI</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -64,19 +64,18 @@
                                 <td><?= $key + 1?></td>
                                 <td><?= $paciente['pac_nombre'] ?></td>
                                 <td><?= $paciente['pac_apellido'] ?></td>
-                                <td><?= $paciente['pac_dpi'] ?></td>
                                 <td><?= $paciente['pac_telefono'] ?></td>
+                                <td><?= $paciente['pac_dpi'] ?></td>
                                 <td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Acciones
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="../../vistas/paciente/modificar.php?pac_pacienteID=<?= base64_encode($paciente['pac_pacienteID'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
-                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?pac_pacienteID=<?= base64_encode($paciente['pac_pacienteID'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
+                                        <li><a class="dropdown-item" href="../../vistas/paciente/modificar.php?pac_pacienteid=<?= base64_encode($paciente['pac_pacienteid'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
+                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?pac_pacienteid=<?= base64_encode($paciente['pac_pacienteid'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
                                     </ul>
                                 </div>
-
                                 </td>
                             </tr>
                         <?php endforeach ?>

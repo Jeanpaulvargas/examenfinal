@@ -1,22 +1,23 @@
 <?php
+
 require 'Conexion.php';
 
 class paciente extends Conexion{
-    public $pac_pacienteID;
+    public $pac_pacienteid;
     public $pac_nombre;
     public $pac_apellido;
-    public $pac_dpi;
     public $pac_telefono;
+    public $pac_dpi;
     public $pac_situacion;
 
 
     public function __construct($args = [])
     {
-        $this->pac_pacienteID = $args['pac_pacienteID'] ?? null;
+        $this->pac_pacienteid = $args['pac_pacienteid'] ?? null;
         $this->pac_nombre = $args['pac_nombre'] ?? '';
         $this->pac_apellido = $args['pac_apellido'] ?? '';
-        $this->pac_dpi = $args['pac_dpi'] ?? 0;
         $this->pac_telefono = $args['pac_telefono'] ?? 0;
+        $this->pac_dpi = $args['pac_dpi'] ?? 0;
         $this->pac_situacion = $args['pac_situacion'] ?? '';
 
     }
@@ -24,8 +25,8 @@ class paciente extends Conexion{
       // METODO PARA INSERTAR
       public function guardar(){
         $sql = "INSERT into pacientes (pac_nombre,
-         pac_apellido, pac_dpi, pac_telefono) values ('$this->pac_nombre',
-         '$this->pac_apellido', '$this->pac_dpi', '$this->pac_telefono')";
+         pac_apellido, pac_telefono, pac_dpi) values ('$this->pac_nombre',
+         '$this->pac_apellido', '$this->pac_telefono', '$this->pac_dpi')";
         $resultado = $this->ejecutar($sql);
         return $resultado; 
     }
@@ -57,23 +58,23 @@ class paciente extends Conexion{
     }
 
     public function buscarId($id){
-        $sql = " SELECT * FROM pacientes WHERE pac_situacion = 1 AND pac_pacienteID = '$id' ";
+        $sql = " SELECT * FROM pacientes WHERE pac_situacion = 1 AND pac_pacienteid = '$id' ";
         $resultado = array_shift( self::servir($sql)) ;
 
         return $resultado;
     }
 
     public function modificar(){
-        $sql = "UPDATE pacientes SET pac_nombre = '$this->pac_nombre', pac_apellido = '$this->pac_apellido', pac_dpi = '$this->pac_dpi', pac_telefono = '$this->pac_telefono' WHERE pac_pacienteID = $this->pac_pacienteID ";
+        $sql = "UPDATE pacientes SET pac_nombre = '$this->pac_nombre', pac_apellido = '$this->pac_apellido', pac_telefono = '$this->pac_telefono', pac_dpi = '$this->pac_dpi' WHERE pac_pacienteid = $this->pac_pacienteid ";
         $resultado = $this->ejecutar($sql);
         return $resultado; 
     }
 
     public function eliminar(){
-        // $sql = "DELETE FROM pacientes WHERE pac_pacienteID = $this->pac_pacienteID ";
+        // $sql = "DELETE FROM productos WHERE prod_id = $this->prod_id ";
 
         // echo $sql;
-        $sql = "UPDATE pacientes SET pac_situacion = 0 WHERE pac_pacienteID = $this->pac_pacienteID ";
+        $sql = "UPDATE pacientes SET pac_situacion = 0 WHERE pac_pacienteid = $this->pac_pacienteid ";
         $resultado = $this->ejecutar($sql);
         return $resultado; 
     }

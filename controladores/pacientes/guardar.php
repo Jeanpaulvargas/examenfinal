@@ -8,10 +8,10 @@ require '../../modelos/paciente.php';
 // VALIDAR INFORMACION
 $_POST['pac_nombre'] = htmlspecialchars($_POST['pac_nombre']);
 $_POST['pac_apellido'] = htmlspecialchars($_POST['pac_apellido']);
-$_POST['pac_dpi'] = htmlspecialchars($_POST['pac_dpi']);
 $_POST['pac_telefono'] = htmlspecialchars($_POST['pac_telefono']);
+$_POST['pac_dpi'] = htmlspecialchars($_POST['pac_dpi']);
 
-if ($_POST['pac_nombre'] == '' || $_POST['pac_apellido'] == '' || $_POST['pac_dpi'] < 0 || $_POST['pac_telefono'] < 0) {
+if ($_POST['pac_nombre'] == '' || $_POST['pac_apellido'] == '' || $_POST['pac_telefono'] < 0 || $_POST['pac_dpi'] < 0) {
     // ALERTA PARA VALIDAR DATOS
     $resultado = [
         'mensaje' => 'DEBE VALIDAR LOS DATOS',
