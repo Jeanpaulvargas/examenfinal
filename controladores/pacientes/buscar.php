@@ -2,22 +2,22 @@
     // ini_set('display_errors', '1');
     // ini_set('display_startup_errors', '1');
     // error_reporting(E_ALL);
-    require '../../modelos/Cliente.php';
+    require '../../modelos/paciente.php';
 
     // consulta
     try {
         // var_dump($_GET);
-        $_GET['cli_nombre'] = htmlspecialchars( $_GET['cli_nombre']);
-        $_GET['cli_apellido'] = htmlspecialchars( $_GET['cli_apellido']);
+        $_GET['pac_nombre'] = htmlspecialchars( $_GET['pac_nombre']);
+        $_GET['pac_apellido'] = htmlspecialchars( $_GET['pac_apellido']);
     
-        $objCliente = new Cliente($_GET);
-        $clientes = $objCliente->buscar();
+        $objpaciente = new paciente($_GET);
+        $pacientes = $objpaciente->buscar();
         $resultado = [
             'mensaje' => 'Datos encontrados',
-            'datos' => $clientes,
+            'datos' => $pacientes,
             'codigo' => 1
         ];
-        // var_dump($clientes);
+        // var_dump($pacientes);
         
     } catch (Exception $e) {
         $resultado = [
@@ -40,10 +40,10 @@
     </div>
     <div class="row mb-4 justify-content-center">
         <div class="col-lg-6">
-            <a href="../../vistas/cliente/buscar.php" class="btn btn-primary w-100">Volver al formulario de busqueda</a>
+            <a href="../../vistas/paciente/buscar.php" class="btn btn-primary w-100">Volver al formulario de busqueda</a>
         </div>
     </div>
-    <h1 class="text-center">Listado de clientes</h1>
+    <h1 class="text-center">Listado de pacientes</h1>
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <table class="table table-bordered table-hover">
@@ -52,28 +52,28 @@
                         <th>No.</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Nit</th>
+                        <th>dpi</th>
                         <th>Telefono</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if($resultado['codigo'] == 1 && count($clientes) > 0) : ?>
-                        <?php foreach ($clientes as $key => $cliente) : ?>
+                    <?php if($resultado['codigo'] == 1 && count($pacientes) > 0) : ?>
+                        <?php foreach ($pacientes as $key => $paciente) : ?>
                             <tr>
                                 <td><?= $key + 1?></td>
-                                <td><?= $cliente['cli_nombre'] ?></td>
-                                <td><?= $cliente['cli_apellido'] ?></td>
-                                <td><?= $cliente['cli_nit'] ?></td>
-                                <td><?= $cliente['cli_telefono'] ?></td>
+                                <td><?= $paciente['pac_nombre'] ?></td>
+                                <td><?= $paciente['pac_apellido'] ?></td>
+                                <td><?= $paciente['pac_dpi'] ?></td>
+                                <td><?= $paciente['pac_telefono'] ?></td>
                                 <td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Acciones
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="../../vistas/cliente/modificar.php?cli_id=<?= base64_encode($cliente['cli_id'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
-                                        <li><a class="dropdown-item" href="../../controladores/clientes/eliminar.php?cli_id=<?= base64_encode($cliente['cli_id'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
+                                        <li><a class="dropdown-item" href="../../vistas/paciente/modificar.php?pac_pacienteID=<?= base64_encode($paciente['pac_pacienteID'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
+                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?pac_pacienteID=<?= base64_encode($paciente['pac_pacienteID'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
                                     </ul>
                                 </div>
 
@@ -82,7 +82,7 @@
                         <?php endforeach ?>
                     <?php else : ?>
                         <tr>
-                            <td colspan="4">No hay clientes registrados</td>
+                            <td colspan="4">No hay pacientes registrados</td>
                         </tr>  
                     <?php endif ?>
                 </tbody>
