@@ -1,7 +1,7 @@
 <?php
 require 'Conexion.php';
 
-class Cliente extends Conexion{
+class paciente extends Conexion{
     public $pac_pacienteID;
     public $pac_nombre;
     public $pac_apellido;
